@@ -63,7 +63,7 @@ add following lines inside base.html=>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CCSBI</title>
+        <title>SuperNovaTrading</title>
     </head>
 
     <body>
@@ -77,9 +77,9 @@ add following lines inside base.html=>
 
 
 
-13)
+14)
 
-change CcsbiProject->templates->index.html =>
+change SuperNovaTrading->templates->index.html =>
 
 {% extends "base.html" %}
 
@@ -87,14 +87,14 @@ change CcsbiProject->templates->index.html =>
 
 {% endblock content %}
 
-14)
-CCSBI/settings.py=>, update TEMPLATES:
-'DIRS': ["CCSBI/templates/"],
+15)
+SuperNovaTradingapp/settings.py=>, update TEMPLATES:
+'DIRS': ["SuperNovaTradingapp/templates/"],
 
 
 
 
-15) static file adding:
+16) static file adding:
 create folder static and inside css and js ,images
 create file js 
 in settings:
