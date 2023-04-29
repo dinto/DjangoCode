@@ -98,16 +98,24 @@ SuperNovaTradingapp/settings.py=>, update TEMPLATES:
 create folder static and inside css and js ,images
 create file js 
 in settings:
+
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+    }
+}
 
-or
-import os
-STATIC_ROOT =os.path.join(BASE_DIR,'static/')
+#or
+#import os
+#STATIC_ROOT =os.path.join(BASE_DIR,'static/')
 
-
+    
 in index.html:
 {% load static %}
 <script src={% static 'js/dashboard.js' %}></script>
