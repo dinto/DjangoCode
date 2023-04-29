@@ -9,3 +9,17 @@
 ALLOWED_HOSTS = ['*']
 <br />
 7)python manage.py runserver
+<br />
+
+8)admin setup:
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+<br />
+output:
+Username (leave blank to use 'hp'): admin
+Email address: dinto.t.d@gmail.com
+Password:
+Password (again):
+Superuser created successfully.
