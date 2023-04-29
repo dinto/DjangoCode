@@ -111,11 +111,15 @@ DATABASES = {
     }
 }
 
-#or
-#import os
-#STATIC_ROOT =os.path.join(BASE_DIR,'static/')
+<br />
 
+17)if error showing like this : django.db.utils.OperationalError: no such table: django_session
+ python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
     
+    
+solution: 
 in index.html:
 {% load static %}
 <script src={% static 'js/dashboard.js' %}></script>
