@@ -135,5 +135,99 @@ model creation
 ===============================================================================
 
 ===============================================================================
-login page
+Authentication page
 ===============================================================================
+Login page: 
+1)login.html
+    <form method="post">
+        <h3>Login Here</h3>
+        {% csrf_token %} 
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="pass">
+        <button type="submit">Log In</button>
+        <a href="{% url 'signup' %}" >Create a account</a>
+    </form>
+
+2)url:
+   path('login/',views.LoginPage,name='login'),
+
+3)view
+from django.shortcuts import render,HttpResponse,redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+
+def LoginPage(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        pass1=request.POST.get('pass')
+        user=authenticate(request,username=username,password=pass1)
+        if user is not None:
+            login(request,user)
+            return redirect('home')
+        else:
+           return redirect('login')
+           # return HttpResponse ("Username or Password is incorrect!!!")
+
+    return render (request,'Authentication/login.html')
+
+4) in view,above home function 
+@login_required(login_url='login')
+
+signup page:
+1)signup.html
+ <form action="" method="post">
+        {% csrf_token %} 
+        <h3>Signup Here</h3>
+
+        <label for="username">Username</label>
+        <input type="text" placeholder="Username" name="username" id="username">
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="Email or Phone" name="email" id="email">
+
+        <label for="password1">Password</label>
+        <input type="password" placeholder="Password" id="password1" name="password1">
+
+
+        <label for="password2">Confrom Password</label>
+        <input type="password" placeholder="Confrom Password" id="password2" name="password2">
+        <button type="submit">Signup</button>
+        
+        <a href="{% url 'login' %}" >i have already account</a>
+    </form>
+2)url:
+    path('signup/',views.SignupPage,name='signup'),
+3)view:
+def SignupPage(request):
+    if request.method=='POST':
+        uname=request.POST.get('username')
+        email=request.POST.get('email')
+        pass1=request.POST.get('password1')
+        pass2=request.POST.get('password2')
+
+        if pass1!=pass2:
+            return HttpResponse("Your password and confrom password are not Same!!")
+        else:
+
+            my_user=User.objects.create_user(uname,email,pass1)
+            my_user.save()
+            return redirect('login')
+    return render (request,'Authentication/signup.html')
+
+url:
+    path('home/',views.SuperNovaTrading,name='home'),
+    
+logout:
+1)url:
+    path('logout/',views.LogoutPage,name='logout'),
+    
+2)view:
+def LogoutPage(request):
+    logout(request)
+    return redirect('login')
+3)in home page:
+<a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+
