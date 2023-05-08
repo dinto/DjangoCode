@@ -133,7 +133,51 @@ in index.html:
 ===============================================================================
 model creation
 ===============================================================================
+models.py:
+    from django.db import models
 
+    # Create your models here.
+
+    class Recommendation(models.Model):
+      tradingSymbol = models.CharField(max_length=250)
+      signal = models.CharField(max_length=250)
+      time  = models.CharField(max_length=250)
+      price  = models.CharField(max_length=250)
+      Stoploss = models.CharField(max_length=250)
+      Target = models.CharField(max_length=250)
+      count = models.CharField(max_length=10)
+      is_Target_hit = models.BooleanField()
+      is_Stoploss_hit = models.BooleanField()
+      #each record name showing tradingsymbol and time base 
+      def __str__(self):
+        return  self.tradingSymbol + '' + self.time
+
+
+python manage.py makemigrations
+python manage.py migrate
+
+
+
+to show admin area:
+admin.py:
+from .models import Recommendation
+admin.site.register(Recommendation)
+
+Pull Data From The Database :
+inside view.py:
+from .models import Recommendation
+all_recomendations = Recomendation.objects.all
+return render(request,index.html,{'all':all_recomendations}
+
+index.html
+{% for item in all %}
+{{item.tradingsymbol}}
+{% endfor %}
+
+
+more study:
+https://docs.djangoproject.com/en/4.2/topics/db/models/
+https://docs.djangoproject.com/en/4.2/ref/models/fields/
 ===============================================================================
 Authentication page
 ===============================================================================
