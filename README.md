@@ -159,6 +159,9 @@ python manage.py migrate
 
 
 to show admin area:
+    
+    
+    
 admin.py:
 from .models import Recommendation
 admin.site.register(Recommendation)
