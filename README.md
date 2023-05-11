@@ -177,7 +177,23 @@ index.html
 {{item.tradingsymbol}}
 {% endfor %}
 
-
+    
+    
+**save to database**
+from .models import Student
+if request.method=="POST":
+    name =request.POST['name']
+    student=Student(name=name)
+    student.save()
+or 
+    from SuperNovaTrading.models import Recommendation
+                      recommendation= Recommendation(
+                        tradingSymbol=tradingSymbol,signal='buy',time=timecal,price=Technical.round_nearest(src[i+1]),
+                        Recommendation_date= datetime.now(),Target1=Technical.round_nearest(src[i+1]+(src[i+1]*0.003)),
+                        SL1=Technical.round_nearest(src[i+1]-(src[i+1]*0.01)),Recommended_by='dinto',count=i,
+                        is_StockIntraday=True
+                        )
+                      recommendation.save()
 more study:
 https://docs.djangoproject.com/en/4.2/topics/db/models/
 https://docs.djangoproject.com/en/4.2/ref/models/fields/
