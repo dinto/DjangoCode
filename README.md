@@ -294,3 +294,17 @@ def LogoutPage(request):
 3)in home page:
 <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
 
+
+
+
+#=================================
+  admin page design
+ ================================
+    
+    url.py
+   
+    
+admin.site.site_header = 'SuperNova Administration dashboard'                   
+admin.site.index_title = 'SuperNova'                 
+admin.site.site_title = 'SuperNova Administration'
+
