@@ -352,7 +352,7 @@ return render(request,'welcome.html',{'Videos':Videos,'nums':nums})
       {% endfor%}
       {% if Videos.has_next %}
       <li class="page-item"><a href="?page={{ Videos.next_page_number }}"  class="page-link"> Next</a></li>
-      <li class="page-item"><a href="?page={{ Videos.num_pages }}"  class="page-link">Last &raquo </a></li>
+      <li class="page-item"><a href="?page={{ Videos.paginator.num_pages }}"  class="page-link">Last &raquo </a></li>
       {% endif %}
     </ul>
   </nav>
