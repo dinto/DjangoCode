@@ -308,3 +308,56 @@ admin.site.site_header = 'SuperNova Administration dashboard'
 admin.site.index_title = 'SuperNova'                 
 admin.site.site_title = 'SuperNova Administration'
 
+    
+    
+   
+   
+#===============================
+    Pagination
+#===============================
+inside view:
+ from django.core.paginator import Paginator
+ 
+Videos_models= VideoLink.objects.all()
+p = Paginator(Videos_models,1)
+page = request.GET.get('page')
+Videos = p.get_page(page)
+nums = "a" * Videos.paginator.num_pages
+return render(request,'welcome.html',{'Videos':Videos,'nums':nums})
+    
+    
+  Html pge:
+      <p style="font-family: Merriweather;font-size: 22px;">Matches Videos</p>
+  <div class="row">
+    {% for Match_Videos in Videos %}
+    <div class="card" style="width: 360px;">
+      <iframe class="embed-responsive-item"  width="360" height="315" src="{{Match_Videos.Youtube_Link}}" title="YouTube video player" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      <div class="card-body">
+        <h5 class="card-title"  style="color:#2A6FAB; font-family: Merriweather;font-size: 20px;">{{Match_Videos.Title_Name}}</h5>
+      </div>
+    </div>
+    &nbsp;
+    {% endfor %}   
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% if Videos.has_previous %}
+      <li class="page-item"><a href="?page=1"  class="page-link">&laquo First</a></li>
+      <li class="page-item"><a href="?page={{Videos.previous_page_number}}"  class="page-link"> Previous</a></li>
+      {% endif %}      
+      {% for i in nums %}
+       <li class="page-item"><a class="page-link" href="?page={{forloop.counter }}">{{forloop.counter}}</a></li>
+      {% endfor%}
+      {% if Videos.has_next %}
+      <li class="page-item"><a href="?page={{ Videos.next_page_number }}"  class="page-link"> Next</a></li>
+      <li class="page-item"><a href="?page={{ Videos.num_pages }}"  class="page-link">Last &raquo </a></li>
+      {% endif %}
+    </ul>
+  </nav>
+    
+    
+ #===============================
+   End Pagination
+#===============================
