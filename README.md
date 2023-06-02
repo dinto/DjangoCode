@@ -492,3 +492,46 @@ return render(request,'welcome.html',{'Videos':Videos,'nums':nums})
 #===============================================================
     End Tab Design
 #===============================================================
+#===============================================================
+    column wise iteration design
+#===============================================================
+    {% for chunk in posts %}
+    <div class="row">
+        {% for post in chunk %}
+            <div class="col-sm">
+                <div class="row" style="background-color: #F2F2F2;padding: 3px;border-radius: 25px; width:90%">
+                    <div class="col-sm-4" >
+                        <img src="/static/{{post.Team_Logo}}" style=" width:100%; height:100%; border-radius: 10px;" alt="Team Logo">
+                    </div>
+                    <div class="col-sm-8" style="font-family: Merriweather; font-size: 20px;" >
+                        <p >{{post.Team_Name}} </p>
+                        <p class="text-justify" id="text">
+                            {{post.Short_Name}}
+                        </p>
+                        {% for Remaining_Points in Remaining_Point %}           
+                            {%if Remaining_Points.Team_Name.id == post.id %}
+                                <span style="color: red;">Remaining Point: {{Remaining_Points.Available_Point}}</span>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="row">
+                            <a href="{% url 'Team_players' post.id %}">Players</a>
+                        </div>
+                       
+            
+                    </div>
+                    
+                </div>
+                &nbsp; &nbsp;
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+
+in view.py
+    posts = list(TeamInfo.objects.all())
+    posts = [posts[i:i+2] for i in range(0, len(posts), 2)]
+#===============================================================
+   End column wise iteration design
+#===============================================================
+    
