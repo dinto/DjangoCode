@@ -361,3 +361,134 @@ return render(request,'welcome.html',{'Videos':Videos,'nums':nums})
  #===============================
    End Pagination
 #===============================
+    
+    
+#===================================
+    Tab design
+#===================================
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<br>
+<br>
+
+    <br>
+    <br>
+
+    <!-- Tabs navs aria-current="page" -->
+<ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link active"
+      id="ex3-tab-1"
+      data-bs-toggle="tab"
+      href="#ex3-tabs-1"
+      role="tab"
+      aria-controls="ex3-tabs-1"
+      aria-selected="true"
+      >Sold Players</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link "
+      id="ex3-tab-2"
+      data-bs-toggle="tab"
+      href="#ex3-tabs-2"
+      role="tab"
+      aria-controls="ex3-tabs-2"
+      aria-selected="false"
+      >UnSold Players</a
+    >
+  </li>
+</ul>
+<!-- Tabs navs -->
+
+<!-- Tabs content -->
+<div class="tab-content" id="ex2-content">
+  <div  class="tab-pane fade show active"  id="ex3-tabs-1"  role="tabpanel"  aria-labelledby="ex3-tab-1">
+    <form class="form-inline my-2 my-lg-0"  action="{% url 'BidStatus' %}" method="GET">
+      <div class="row">
+        <div class="col-8">
+          <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+  
+        </div>
+        <div class="col-4">
+          <button class="btn btn-outline-success my-2 my-sm-0" name="search" type="submit">Search</button>
+        </div>
+        
+  
+      </div>
+     
+     
+    </form>
+  
+    {% for Sold_Player in Sold_Players %}
+    <div class="card" style="width: 24rem; margin: 10px"  id="image_container">
+      <div class="row">
+          <div class="col-6">
+              <img src="/static/{{Sold_Player.Player_name.Profile_Pic}}" class="player" >
+              
+          </div>
+          <div class="col-6">   
+            <h1 class="card-title">{{ Sold_Player.Player_name.name }}</h1>
+            <p class="card-text"> {{ Sold_Player.Player_name.Batting_style }}</p>
+            <p class="card-text"> {{ Sold_Player.Player_name.Bowling_style }}</p>
+          </div>
+      </div>
+      <div class="card-body" style="padding: 0px; background-color: #9999">   
+        <div class="row">
+            <div class="col-6">
+                {{ Sold_Player.Team_Name}}
+                <p class="card-text"> Bid point:{{ Sold_Player.Sold_Point }}</p>
+
+            </div>
+            <div class="col-6">
+                <img src="/static/{{Sold_Player.Team_Name.Team_Logo}}" class="team">
+            </div>
+        </div>
+         
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+<!-- Tab unsold players-->
+
+  <div  class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
+
+    <form class="form-inline my-2 my-lg-0"  action="{% url 'BidStatus' %}" method="GET">
+      <div class="row">
+        <div class="col-8">
+          <input class="form-control mr-sm-2" type="text" name="query_unsold" placeholder="Search" aria-label="Search">
+        </div>
+        <div class="col-4">
+          <button class="btn btn-outline-success my-2 my-sm-0" name="search_unsold" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  
+    {% for Unsold_Player in Unsold_players %}
+    <div class="card" style="width: 24rem; margin: 10px"  id="image_container">
+      <div class="row">
+          <div class="col-6">
+              <img src="/static/{{Unsold_Player.Player_name.Profile_Pic}}" class="player" >
+              
+          </div>
+          <div class="col-6">   
+            <h1 class="card-title">{{ Unsold_Player.Player_name.name }}</h1>
+            <p class="card-text"> {{ Unsold_Player.Player_name.Role }}</p>
+            <p class="card-text"> {{ Unsold_Player.Player_name.Batting_style }}</p>
+            <p class="card-text"> {{ Unsold_Player.Player_name.Bowling_style }}</p>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+    
+#===============================================================
+    End Tab Design
+#===============================================================
