@@ -535,3 +535,39 @@ in view.py
    End column wise iteration design
 #===============================================================
     
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  ==============
+admin css problem solving after hosting 
+==============
+pip install whitenoise
+
+In setting file:
+DEBUG = False
+
+MIDDLEWARE[
+'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
+------------------
+python manage.py collectstatic     
+this will add 132 files to static folder
