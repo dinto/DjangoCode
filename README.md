@@ -115,7 +115,22 @@ DATABASES = {
         'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
     }
 }
-
+----------------------
+    for mysql
+----------------------
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': 'KTCC_DATABASE',
+		'USER': 'KTCC',
+		'PASSWORD': 'ktcc@2023',
+		'HOST':'localhost',
+		'PORT':'3306',
+	}
+}
+----------------------
+    End Mysql
+----------------------
 <br />
 
 17)if error showing like this : django.db.utils.OperationalError: no such table: django_session
