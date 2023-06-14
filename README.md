@@ -552,9 +552,33 @@ in view.py
     
     
     
-    
+============================
+CSV or EXCEL file download
+=========================== 
+in view.py
 
-    
+import csv
+
+
+def players_csv(request):
+response =HttpResponse(content_type='text/csv')
+response['Content-Disposition'] ='attcahment;filename=playersregistration.csv'
+writer =csv.writer(response)
+players=PlayerInfo.Objects.all()
+writer.writerow(['Name','Date of Birth','Age','Place','Phone Number','Mail Id','Role','Batting Style','Bowling Style','is home ground player','is icon player'])
+
+for player in players:
+  writer.writerow([player.name,player.dob,player.age,player.place,player.phone_number,player.mail_id,player.Role,player.Batting_style,player.Bowling_style,player.is_home_ground_player,player.is_icon_player])
+
+return response
+
+
+
+url.py:
+    path('players_csv/', views.players_csv, name='players_csv'),
+
+template:
+==================================================================================================
     
     
     
