@@ -1,7 +1,8 @@
 rsa if required:
-ssh-keygen -t rsa
-cat /home/ubuntu/.ssh/id_rsa.pub
+ssh-keygen -t rsa     (or    ssh-keygen -t rsa -b 2048 -C "dinto.t.d@gmail.com"  )
 
+cat /home/ubuntu/.ssh/id_rsa.pub
+copy to github settings 
 ===============================================================================
 initial step 
 ===============================================================================
