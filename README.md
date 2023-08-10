@@ -10,6 +10,8 @@ initial step
 
 1)python -m venv virenv   <br />
 2)virenv\Scripts\activate  <br />
+
+python.exe -m pip install --upgrade pip
 3)pip install django     <br />
 4)django-admin startproject SuperNovaTradingapp .  <br />
 5)python manage.py startapp SuperNovaTrading   <br />
