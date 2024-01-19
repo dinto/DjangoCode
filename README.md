@@ -17,8 +17,19 @@ python.exe -m pip install --upgrade pip
 5)python manage.py startapp SuperNovaTrading   <br />
 
 6)in settings: 
+setup static and media file in settings
+    import os
+    in template:
+        'DIRS':[os.path.join(BASE_DIR,'templates')],
+    STATIC_ROOT= os.path.join(BASE_DIR,'static')
+    STATICFILES_DIRS= [os.path.join(BASE_DIR,'staticfiles')]
+    MEDIA_URL='/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+
 'SuperNovaTrading', in installed apps 
 ALLOWED_HOSTS = ['*']
+create folder name : templates,static,media
 <br />
 7)python manage.py runserver
 <br />
